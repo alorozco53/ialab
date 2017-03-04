@@ -1,0 +1,270 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+%% \documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\documentclass[paper=letter, fontsize=12pt]{scrartcl} % Letter paper and 12pt font size
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english,spanish]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {ñ}{{\~n}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1
+  {Ú}{{\'U}}1,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=R,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\raggedright \textit\normalfont\scshape\emph} % Make all sections centered, the default font and small caps
+            
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\setcounter{section}{0}
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{
+  \vspace*{\fill}
+  \begin{center}
+    \normalfont \normalsize
+    \textsc{Universidad Nacional Autónoma de México\\Facultad de Ciencias} \\ [25pt]
+    \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+    \huge \textbf{Tarea 2} \\ % The assignment title
+    \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+    \large \textit{Inteligencia Artificial} \\
+  \end{center}
+}
+
+\author{Albert Manuel Orozco Camacho} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+\begin{document}
+
+\begin{titlepage}
+  \maketitle
+  \thispagestyle{empty}
+  \vspace*{\fill}
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Agente que convierte imágenes digitalizadas en archivos \LaTeX}
+
+\subsection{Entorno de trabajo}
+
+\begin{itemize}
+\item \textbf{Medidas de rendimiento:} Que el texto en \LaTeX   coincida en su totalidad con el de\
+  la imagen digitalizada (o en su defecto que se minimice el error de coindidencia por palabra).\
+  Que el texto se codifique a texto de \LaTeX   y no a alguna imagen, es decir, que un usuario pueda\
+  editar el texto digitalizado dentro de \LaTeX. Que identifique el formato del texto, tablas, gráficos\
+  e ilustraciones y todo lo posicione lo más cercano posible a la ``realidad''.
+\item \textbf{Entorno:} Conexión con el programa que digitalizó la imagen, con un editor de texto y en\
+  general, con un sistema de archivos dentro de un sistema operativo. El programa que digitalizó la imagen\
+  debe brindarle al agente una representación de la misma, por ejemplo, una matriz de pixeles.
+\item \textbf{Actuadores:} Mecanismo de producción de código \LaTeX   a partir de una representación\
+  interna generada por el sensor de imagen. Se trata del programa que transforma de (tal vez) una matriz\
+  de pixeles a código \LaTeX.
+\item \textbf{Sensores:} Programa que identifica las partes de la imagen que corresponden a texto, a\
+  ilustraciones, tablas, ecuaciones y cualquier otro elemento propio de una página de un libro de cálculo.\
+  Además, el agente debe de saber interpretar la comunicación que establece con el mismo sistema\
+  operativo en donde funciona.
+\end{itemize}
+
+\subsection{Seis propiedades de los entornos de trabajo}
+
+\begin{itemize}
+\item El agente \textbf{totalmente observa} su entorno pues para identificar las partes de una imagen\
+  digitalizada (sensores) lo que se le brinda (matriz de pixeles) le es suficiente para saber qué\
+  debe de transformar a \LaTeX. Además, conoce la información del sistema operativo en el que\
+  funciona; esto asumiendo que puede adaptarse a diversas computadoras.
+\item El agente no sabe más que convertir imágenes de un libro de cálculo en código \LaTeX. Sin embargo,\
+  al obtener una imagen, esta no le da información alguna sobre la(s) siguiente(s) imágenes a\
+  transformar o si ya acabó de recibir imágenes. Por lo tanto, el entorno es\
+  \textbf{estocástico}.
+\item Cada imagen a traducir es independiente del modo en el que vienen las demás. Puede decirse\
+  que el agente trata cada traducción de manera ``atómica'' ya que no tomará en cuenta el conocimiento\
+  previo de traducciones. Por lo tanto, el entorno es \textbf{episódico}. Cabe destacar que esto\
+  se preserva incluso si el agente aprendió automáticamente lo que hay que clasificar en una imagen\
+  digitalizada. Sin embargo, hay algoritmos como los de aprendizaje por refuerzo que pueden requerir\
+  que el agente siga aprendiendo conforme va haciendo traducciones.
+\item Normalmente cuando el agente recibe una imagen a traducir, ésta ya no cambia. Realmente considerar\
+  cambios en el entorno en esta situación es algo extremo pues prácticamente solo pueden venir de fallas\
+  del sistema operativo o la interrrupción del trabajo. Por lo tanto, se trata de un entorno\
+  \textbf{estático}.
+\item La representación de la imagen digitalizada está dada por una matriz o alguna otra forma discreta\
+  que la computadora puede manejar. De ahí a que el entorno sea \textbf{discreto}. Sin embargo, la\
+  manera de identificar cada parte de una imagen, ciertamente, asume que la forma de la misma\
+  varía continuamente. Dependiendo del algoritmo del sensor es que esto puede llegar a ser tratado\
+  como algo continuo pero, en general, se sigue trabajando con valores discretos.
+\item A reserva de que se ejecuten varios agentes en paralelo para maximizar la velocidad de traducción\
+  de imágenes a \LaTeX, en general, solo se tiene un agente haciendo esta tarea. Por lo tanto, el\
+  entorno es de un \textbf{agente individual}, aunque por lo dicho al principio, puede llegar a ser\
+  multiagente cooperativo.
+\end{itemize}
+
+\section{Damas españolas}
+
+Estoy considerando llamar ``peones'' a cualquier ficha ordinaria y ``dama'' a las que se han\
+\textit{coronado}. Éstas últimas son las que poseen dos fichas apiladas.
+
+\begin{itemize}
+\item Un estado en este juego es la configuración de la posición de cada ficha en un determinado tiempo\
+  y una variable que indica a qué jugador le toca. Esto puede ser modelado por una matriz $M$ de $8 \times 8$ en la que
+  \[M[i,j]\ =\ \
+  \begin{cases}
+    0 & \text{si\ la\ casilla\ i,j\ está\ desocupada}\\
+    1 & \text{si\ la\ casilla\ i,j\ está\ ocupada por una dama blanca}\\
+    2 & \text{si\ la\ casilla\ i,j\ está\ ocupada por un peón blanco}\\
+    3 & \text{si\ la\ casilla\ i,j\ está\ ocupada por una dama negra}\\
+    4 & \text{si\ la\ casilla\ i,j\ está\ ocupada por un peón negro}\\
+  \end{cases}
+  \]
+  El espacio de estados es, entonces,
+  \[S\ =\ \{\langle M,turn \rangle\ |\ M \in Matriz_{8 \times 8},\ \
+  turn \in \{true,false\}\},
+  \]
+  donde ``turn'' es una variable booleana que indica a qué jugador le toca mover. Se tomará\
+  la convención de que si $turn\ =\ true$ entonces juegan las blancas y viceversa.
+\item De acuerdo a las reglas, un peón solo se puede mover y capturar una casilla en diagonal\
+  y hacia adelante. Las damas hacen casi lo mismo pero en a través de cualquier número de\
+  casillas, siempre que se pueda. Decimos que una ficha en $M[i,j]$ es movible a otra coordenada\
+  $i',j'$ si de $i,j$ se llega a $i',j'$ en diagonal y
+  \[
+  \begin{cases}
+    llega\ a\ i',j'\ con\ un\ paso\ hacia\ adelante & si\ M[i,j]\ =\ 1\ y\ M[i',j']\ =\ 0\\
+    llega\ a\ i',j'\ llendo\ hacia\ adelante\ o\ hacia\ atrás & si\ M[i,j]\ =\ 2\ y\ M[i',j']\ =\ 0\\
+  \end{cases}
+  \]
+  Una ficha en $M[i',j']$ es capturable por otra ficha en $M[i,j]$ si la captura se hace en diagonal y
+  \[
+  \begin{cases}
+    llega\ a\ i',j'\ con\ un\ paso\ hacia\ adelante & si\ M[i,j]\ =\ 1\ y\ M[i',j']\ >\ 0\\
+    llega\ a\ i',j'\ llendo\ hacia\ adelante\ o\ hacia\ atrás & si\ M[i,j]\ =\ 2\ y\ M[i',j']\ >\ 0\\
+  \end{cases}
+  \]
+  Una ficha en $M[i,j]$ es coronable si $M[i,j]\ =\ 1$está en el extremo opuesto de a lado. Es decir, si la\
+  $i$ es 8 para un peón que empezó en las filas 1, 2 y 3; entonces la $i$ debe ser 0 para\
+  peones que empezaron en las filas 8, 7 y 6.\par
+  
+  Se define el conjunto de acciones como $A\ =\ \{mov,\ capt,\ cor\}$, donde $mov(M,i,j,i',j')$ escribe el\
+  contenido de $M[i,j]$ en $M[i',j']$ y $0$ en $M[i,j]$ si esta acción es movible. Además,\
+  $capt(M,i,j,i',j')$ escribe el contenido de $M[i,j]$ en $M[i',j']$ y $0$ en $M[i,j]$ si esta acción\
+  es capturable. Finalmente, $cor(M,i,j)$ escribe $2$ en $M[i,j]$ si esta acción es coronable.\par
+
+  Obsérvese que todo lo anterior se definió para las fichas blancas pero análogamente, se extiende\
+  la definición para fichas negras.\par
+
+  Dado un estado $s_i\ =\ \langle M_i,turn_i \rangle $, se define la función\
+  $\gamma:S \times A \to S$ como
+  \[
+  \gamma(s_{i+1},\ a)\ =\ \
+  \begin{cases}
+    indefinida & \text{si\ la\ acción\ }a\ \text{mueve piezas\ blancas\ y\ } turn_i\ =\ true\\
+    indefinida & \text{si\ la\ acción\ }a\ \text{mueve piezas\ negras\ y\ } turn_i\ =\ false\\
+    \langle mov(M_i,k,j,k',j'),!turn_i \rangle & \text{si\ }a\ =\ mov\ \text{para\ algunas} k,k',j,j'\\
+    \langle capt(M_i,k,j,k',j'),!turn_i \rangle & \text{si\ }a\ =\ capt\ \text{para\ algunas} k,k',j,j'\\
+    \langle cor(M_i,k,j),!turn_i \rangle & \text{si\ }a\ =\ cor\ \text{para\ algunas} k,j\\
+  \end{cases}
+  \]
+
+  Para el estado inicial, se ignoran los dos casos anteriores que hacen indefinida a la función $\gamma$
+  y se establece $turn_0\ =\ true$ si son las blancas las que empiezan o $turn_0\ =\ false$ si son las negras.
+  
+\item Sea $\Sigma\ = (S,A,E,\gamma)$, donde:
+  \begin{itemize}
+  \item $S$ es el espacio de estados definido anteriormente
+  \item $A$ es el conjunto de acciones definido anteriormente
+  \item $E\ =\ \emptyset$
+  \item $\gamma$ es la función definida en el inciso anterior
+  \end{itemize}
+
+\item Tomando como convención que siempre empiezan las blancas, el estado inicial establece\
+  que $turn_0\ =\ true$ y la matriz siguiente:
+  \[
+  \begin{bmatrix}
+    1&0&1&0&1&0&1&0 \\
+    0&1&0&1&0&1&0&1 \\
+    1&0&1&0&1&0&1&0 \\
+    0&0&0&0&0&0&0&0 \\
+    0&0&0&0&0&0&0&0 \\
+    0&3&0&3&0&3&0&3 \\
+    3&0&3&0&3&0&3&0 \\
+    0&3&0&3&0&3&0&3 \\
+  \end{bmatrix}.
+  \]
+
+\item Hay tres escenarios que establecen el término de una partida: que queden dos peones o dos damas por cada\
+  bando (tablas), que ya no haya fichas negras (blancas ganan) y que ya no haya fichas blancas\
+  (negras ganan). Entonces, la función $g$ que identifica un estado meta es:
+  \[
+  g(\langle M,a \rangle)\ =\ \
+  \begin{cases}
+    true & \text{hay\ un\ } 1 \text{\ y\ un\ } 3 \text{\ únicamente}\\
+    true & \text{hay\ un\ } 2 \text{\ y\ un\ } 4 \text{\ únicamente}\\
+    true & \text{ya\ no\ hay\ } 3\ \text{ni\ } 4\\
+    true & \text{ya\ no\ hay\ } 1\ \text{ni\ } 2\\
+    false & \text{en\ otro\ caso}\\
+  \end{cases}
+  \]
+
+\item Dado el estado inicial establecido anteriormente, cada agente (jugador) va realizando la acción que le\
+  lleve a llegar lo más pronto posible a algún estado donde el otro agente se quede sin fichas. Es decir,
+  cada agente en el $i$-ésimo turno considera la trayectoria $\langle s_i,\ s_{i+1},\ ... ,\ s_{i+m} \rangle$\
+  en la que cada estado es alcanzable por el anterior y $s_{i+m}$ es tal que $g(s_{i+m})\ =\ true$ y gana\
+  dicho agente, para alguna $m$.
+\end{itemize}
+ 
+
+\end{document}

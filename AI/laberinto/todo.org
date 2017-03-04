@@ -1,0 +1,4 @@
+*** TODO Agregar coordenadas del grid a las celdas
+    - [ ] Modificar los métodos de la clase Grid correspondientes para que se lean y funcionen mejor
+*** TODO Hacer 'más general' el método generateLabyrinth()
+*** TODO Escribir el código del ciclio principal de backtrack

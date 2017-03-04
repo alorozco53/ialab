@@ -1,0 +1,6 @@
+enum Tipo {
+  ESTADO_INICIAL,
+  ESTADO_FINAL,
+  OBSTACULO,
+  VACIO
+}
